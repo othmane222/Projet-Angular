@@ -1,0 +1,192 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col-md-8 offset-md-2">
+      <div class="card border-0 shadow">
+        <div class="card-header bg-black text-white">Products</div>
+        <div class="card-body">   
+          <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchProducts()">
+            <div class="input-group mb-3">
+              <!--<input type="text" class="form-control" placeholder="Search" aria-label="Search" formControlName="keyword"
+              (keypress)="onKeyPress($event)" >
+              <button class="btn btn-outline-info" type="submit">
+                <i class="bi bi-search"></i>
+              </button>-->
+            </div>    
+          </form>
+          <div class="mb-3">
+            <select class="form-select" [(ngModel)]="selectedCategory" (change)="onCategorySelected(selectedCategory)" (keypress)="onKeyPress($event)">
+              <option value="">All Categories</option>
+              <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+          </div>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <ng-container *ngFor="let p of products">
+              @if(selectedCategory==p.category || selectedCategory=='')
+              {              
+                @if(usernameActuel!='admin'&& p.quantity!>0){
+                <div class="col">
+                <div class="card h-100 bg-light border-0">
+                  <img [src]="'assets/images/' + p.imagePath" class="card-img-top" alt="{{ p.name }} Image">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">{{ p.name }}</h5>
+                    <p class="card-text text-muted">Price: <span class="text-success">{{ p.price }}</span></p>
+                    <p class="card-text text-muted">Quantity: <span class="text-info">{{ p.quantity }}</span></p>
+                    <button class="btn btn-custom btn-show-description" (click)="toggleDescription(p)">
+                      Show Description
+                    </button>
+                    @if(usernameActuel!='admin'){ <button class="btn btn-custom btn-add-to-cart" (click)="addToCart(p)">Add to Cart</button>}
+                    <div *ngIf="p.showDescription" class="mt-3">
+                      <h6 class="text-secondary">Description:</h6>
+                      <p class="text-muted">{{ p.description }}</p>
+                    </div>
+                    @if(usernameActuel=='admin'){
+                    <button class="btn btn-custom btn-delete" (click)="deleteProduct(p.id)">
+                      Delete
+                    </button>
+                    <button class="btn btn-custom btn-edit" [routerLink]="['/modifierproduit', p.id]">
+                      Edit
+                    </button>}
+                  </div>
+                </div>
+              </div>}
+            @else if(usernameActuel=='admin'){
+              <div class="col">
+                <div class="card h-100 bg-light border-0">
+                  <img [src]="'assets/images/' + p.imagePath" class="card-img-top" alt="{{ p.name }} Image">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">{{ p.name }}</h5>
+                    <p class="card-text text-muted">Price: <span class="text-success">{{ p.price }}</span></p>
+                    <p class="card-text text-muted">Quantity: <span class="text-info">{{ p.quantity }}</span></p>
+                    <button class="btn btn-custom btn-show-description" (click)="toggleDescription(p)">
+                      Show Description
+                    </button>
+                    @if(usernameActuel!='admin'){ <button class="btn btn-custom btn-add-to-cart" (click)="addToCart(p)">Add to Cart</button>}
+                    <div *ngIf="p.showDescription" class="mt-3">
+                      <h6 class="text-secondary">Description:</h6>
+                      <p class="text-muted">{{ p.description }}</p>
+                    </div>
+                    @if(usernameActuel=='admin'){
+                    <button class="btn btn-custom btn-delete" (click)="deleteProduct(p.id)">
+                      Delete
+                    </button>
+                    <button class="btn btn-custom btn-edit" (click)="editProduct(p)">
+                      Edit
+                    </button>}
+                  </div>
+                </div>
+              </div>
+            }
+            }
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Section -->
+  @if(usernameActuel!='admin'){<div class="container mt-5">
+    <h2 class="text-center">Shopping Cart</h2>
+    <ul class="list-group">
+      <li *ngFor="let cartItem of cartItems" class="list-group-item d-flex justify-content-between align-items-center">
+        <span>{{ cartItem.item.name }} - {{ cartItem.item.price }} x {{ cartItem.quantity }}</span>
+        <button (click)="removeFromCart(cartItem.item)" class="btn btn-danger">Remove</button>
+      </li>
+    </ul>
+    <div class="total-price mt-3 text-center">
+      <strong>Total Price: {{ getTotalPrice() }}</strong>
+    </div>
+    <div class="text-center">
+      <button (click)="checkout()" class="btn btn-success mt-3">Checkout</button>
+    </div>
+  </div>}
+
+  <footer class="bg-dark text-light pt-4 footer">
+    <div class="container">
+      <div class="row">
+        <!-- Company Info -->
+        <div class="col-md-4 mb-4">
+          <h5>About Us</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        </div>
+        <!-- Quick Links -->
+        <div class="col-md-4 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-light">Home</a></li>
+            <li><a href="#" class="text-light">Products</a></li>
+            @if(usernameActuel=='admin'){ <li><a [routerLink]="['/admin/ajouterproduit']" class="text-light">Ajouter Products</a></li>}
+            <li><a href="#" class="text-light">Contact</a></li>
+          </ul>
+        </div>
+        <!-- Contact Info -->
+        <div class="col-md-4 mb-4">
+          <h5>Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-envelope"></i> infomywebsite.com</li>
+            <li><i class="bi bi-phone"></i> +123 456 7890</li>
+            <li><i class="bi bi-geo-alt"></i> 123 Main St, Anytown, USA</li>
+          </ul>
+          <!-- Social Media Links -->
+          <div class="mt-3">
+            <a href="#" class="text-light me-2"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-light me-2"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-light me-2"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-light me-2"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12 text-center">
+          <p class="mb-0">© 2024 My Website. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+
+<router-outlet></router-outlet>
+
+<style>
+  .btn-custom {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+  .btn-custom.btn-show-description:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  .btn-custom.btn-add-to-cart:hover {
+    background-color: #28a745;
+    color: white;
+  }
+  .btn-custom.btn-delete:hover {
+    background-color: #dc3545;
+    color: white;
+  }
+  .btn-custom.btn-edit:hover {
+    background-color: #ffc107;
+    color: black;
+  }
+
+  /* Cart Styles */
+  .container h2 {
+    margin-bottom: 20px;
+  }
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .list-group-item button {
+    margin-left: 10px;
+  }
+  .total-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+</style>

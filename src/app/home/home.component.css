@@ -1,0 +1,68 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: black; /* Set default text color to black */
+    background-color: white; /* Set default background color to white */
+}
+
+.content {
+    flex: 1;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+.card {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.card-img-top {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.navbar-brand {
+    font-weight: bold !important; /* Set font weight to bold */
+    color: white !important; /* Set navbar brand text color to white */
+}
+
+.navbar-nav .nav-link {
+    color: white !important; /* Set nav links text color to white */
+}
+
+.nav-link.active {
+    color: white !important; /* Set active nav links text color to white */
+}
+
+.nav-link.disabled {
+    color: white !important; /* Set disabled nav links text color to white */
+}
+
+.navbar-toggler-icon {
+    color: white !important; /* Set toggler icon color to white */
+}
+
+.container {
+    padding-top: 20px;
+}
+
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    width: 100%;
+}

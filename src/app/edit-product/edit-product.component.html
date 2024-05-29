@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-rbDr5rY6Ad9gbyC4OQce3/fBbsnlfGFaHvJo2mY3m8G8Prxn2gRZ8wC6ecKnA1z4" crossorigin="anonymous">
+    <style>
+        .navbar {
+            background: linear-gradient(to right, #000000ce, #000000);
+        }
+
+        .navbar-brand {
+            color: rgb(255, 255, 255);
+        }
+
+        .navbar-nav .nav-link {
+            color: rgb(255, 255, 255);
+        }
+
+        .nav-link.active {
+            color: rgb(255, 255, 255);
+        }
+
+        .nav-link.disabled {
+            color: rgb(255, 255, 255);
+        }
+
+        .navbar-toggler-icon {
+            color: rgb(255, 255, 255);
+        }
+
+        .nav-item {
+            margin-right: 20px;
+        }
+
+        .navbar-nav:last-child {
+            margin-left: auto;
+        }
+
+        .navbar-nav:last-child .nav-link {
+            color: rgb(255, 255, 255);
+            display: flex;
+            align-items: center;
+        }
+
+        .search-form {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-input {
+            width: 80%;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            background-color: rgb(255, 255, 255);
+            color: black;
+        }
+
+        .content {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">My Website</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ajouter Products</a>
+                    </li>
+                </ul>
+                <form class="d-flex search-form">
+                    <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light search-button" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-person"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-geo-alt"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container content">
+        <h2 class="text-center mb-5">Edit Product</h2>
+        <form [formGroup]="editForm" (ngSubmit)="editProduct()">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" for="name">Name</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="name" formControlName="name">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" for="brand">Brand</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="brand" formControlName="brand">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" for="category">Category</label>
+                <div class="col-sm-8">
+                    <select class="form-select" id="category" formControlName="category">
+                        <option value='Other'>Other</option>
+                        <option value='Phones'>Phones</option>
+                        <option value='Computers'>Computers</option>
+                        <option value='Accessories'>Accessories</option>
+                        <option value='Cameras'>Cameras</option>
+                        <option value='Printers'>Printers</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" for="price">Price</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="price" formControlName="price" type="number">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" for="description">Description</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="description" formControlName="description"></textarea>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" for="imagePath">Image Path</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="imagePath" formControlName="imagePath">
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                <div class="col-sm-4 d-grid">
+                    <a class="btn btn-outline-primary" href="/products" role="button">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+
+    <footer class="bg-dark text-light pt-4 footer mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>About Us</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Home</a></li>
+                        <li><a href="#" class="text-light">Products</a></li>
+                        <li><a href="#" class="text-light">Ajouter Products</a></li>
+                        <li><a href="#" class="text-light">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-envelope"></i> infomywebsite.com</li>
+                        <li><i class="bi bi-phone"></i> +123 456 7890</li>
+                        <li><i class="bi bi-geo-alt"></i> 123 Main St, Anytown, USA</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="#" class="text-light me-2"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-2"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light me-2"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light me-2"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <p class="mb-0">© 2024 My Website. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+paslgP1e6fU6vz5v5G/kP5y4p6pG" crossorigin="anonymous"></script>
+</body>
+</html>

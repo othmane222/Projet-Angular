@@ -1,0 +1,37 @@
+.navbar {
+    background: linear-gradient(to right, #000000ce, #000000);
+}
+
+.navbar-brand, .navbar-nav .nav-link, .nav-link.active, .nav-link.disabled, .navbar-toggler-icon {
+    color: rgb(255, 255, 255);
+}
+
+.nav-item {
+    margin-right: 20px;
+}
+
+.navbar-nav:last-child {
+    margin-left: auto;
+}
+
+.navbar-nav:last-child .nav-link {
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+}
+
+.search-form {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    width: 80%;
+    margin-right: 10px;
+}
+
+.search-button {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}

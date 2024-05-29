@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .hero-banner {
+      background: url('https://via.placeholder.com/1920x600') no-repeat center center;
+      background-size: cover;
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+    }
+    .hero-banner h1 {
+      font-size: 4rem;
+      color: black;
+    }
+    .hero-banner p {
+      font-size: 1.5rem;
+      color: black;
+    }
+    .about-section {
+      padding: 50px 0;
+      text-align: center;
+    }
+    .about-section h2 {
+      margin-bottom: 30px;
+      color: black;
+    }
+    .about-section p {
+      color: black;
+    }
+    .icon-card {
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+    .icon-card:hover {
+      transform: scale(1.05);
+    }
+    .icon-card i {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: black;
+    }
+    body {
+      background-color: rgb(230, 227, 227);
+      font-family: 'SheinFont', sans-serif; /* Assuming Shein font is imported */
+      color: rgb(0, 0, 0);
+    }
+
+    .navbar {
+      background: linear-gradient(to right, #000000ce, #000000);
+    }
+
+    .navbar-brand {
+      color: rgb(0, 0, 0);
+    }
+
+    .navbar-nav .nav-link {
+      color: rgb(0, 0, 0);
+    }
+
+    .nav-link.active {
+      color: rgb(0, 0, 0);
+    }
+
+    .nav-link.disabled {
+      color: rgb(0, 0, 0);
+    }
+
+    .navbar-toggler-icon {
+      color: rgb(0, 0, 0);
+    }
+
+    .nav-item {
+      margin-right: 20px;
+    }
+
+    .navbar-nav:last-child {
+      margin-left: auto;
+    }
+
+    .navbar-nav:last-child .nav-link {
+      color: rgb(0, 0, 0);
+      display: flex;
+      align-items: center;
+    }
+
+    .search-form {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-input {
+      width: 80%;
+      margin-right: 10px;
+    }
+
+    .search-button {
+      background-color: rgb(255, 255, 255);
+      color: black;
+    }
+  </style>
+
+  <title>OTech Home</title>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="#">OTech</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" [routerLink]="['/home']">
+                      Home
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" [routerLink]="['/admin/products']">
+                      Products
+                  </a>
+              </li>
+               @if(usernameActuel=='admin'){ 
+                  <li class="nav-item">
+                    <a  class="nav-link active" aria-current="page" [routerLink]="['/admin/ajouterproduit']">Ajouter Products</a>
+   </li>
+          }
+          </ul>
+          <div class="search-form">
+              <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn search-button" type="submit"><i class="bi bi-search"></i></button>
+          </div>
+          <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                      <i class="bi bi-person-fill"></i>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                      <i class="bi bi-cart-fill"></i>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                      <i class="bi bi-heart-fill"></i>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                      <i class="bi bi-geo-alt-fill"></i>
+                  </a>
+              </li>
+          </ul>
+          
+      </div>
+  </div>
+</nav>
+
+
+<!-- Hero Banner -->
+
+
+<!-- About Section -->
+<div class="about-section bg-light">
+  <div class="container">
+    <h2>About OTech</h2>
+    <p>At OTech, we are committed to providing our customers with the best technology products at competitive prices. Our goal is to offer a wide range of products, from the latest smartphones to top-notch accessories, ensuring a seamless shopping experience.</p>
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <div class="icon-card text-center">
+          <i class="bi bi-phone"></i>
+          <h5>Latest Phones</h5>
+          <p>Stay updated with the newest smartphone releases and top picks.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-card text-center">
+          <i class="bi bi-laptop"></i>
+          <h5>Quality Laptops</h5>
+          <p>Find the perfect laptop for work, gaming, or personal use.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-card text-center">
+          <i class="bi bi-headphones"></i>
+          <h5>Accessories</h5>
+          <p>Discover our range of accessories to complement your devices.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
